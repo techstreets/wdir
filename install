@@ -1,0 +1,19 @@
+#!/bin/bash
+
+error() {
+  printf '\E[31m'; echo "$@"; printf '\E[0m'
+}
+
+if [[ $EUID -ne 0 ]]; then
+    error "This script must be run using sudo or as the root user!"
+    exit 1
+fi
+
+WD=$(pwd)
+virtualenv "${WD}/env"
+source "${WD}/env/bin/activate"
+pip install -r "${WD}/requirements.txt"
+ln -s "${WD}/wdir" /usr/bin/wdir
+chown -R $(logname):$(logname) "${WD}/env"
+echo 'wdir installed!'
+exit 0

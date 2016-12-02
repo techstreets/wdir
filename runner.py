@@ -6,7 +6,9 @@ import sys
 
 
 def main():
-    print sys.argv
+    args = sys.argv[1:]
+    if args == ['add', '.']:
+        print 'Add currect dir not implemented yet!'
 
 
 if __name__ == '__main__':

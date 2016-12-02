@@ -1,0 +1,6 @@
+#!/bin/bash
+
+WD=$(dirname "$(readlink -f "$0")")
+# WD=$(pwd)
+source "${WD}/env/bin/activate"
+python "${WD}/runner.py" $@
